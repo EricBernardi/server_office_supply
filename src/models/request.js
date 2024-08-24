@@ -6,7 +6,7 @@ async function createRequest(request) {
         const result = await pool.request()
             .input('requesterName', sql.VarChar, request.requesterName)
             .input('description', sql.Text, request.description)
-            .input('price', sql.VarChar, request.price)
+            .input('price', sql.Real, request.price)
             .query(`INSERT INTO Requests (RequesterName, Description, Price)
                     OUTPUT INSERTED.*
                     VALUES (@requesterName, @description, @price)`);
