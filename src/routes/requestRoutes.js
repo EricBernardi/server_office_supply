@@ -1,9 +1,7 @@
-const express = require('express');
-const router = express.Router();
-const requestController = require('../controllers/requestController');
+const { router } = require('../config/server');
+const { createRequest } = require('../controllers/requestController');
+const requestRoutes = router;
 
-router.post('/requester', requestController.createRequest);
-router.get('/admin', requestController.getRequests);
-router.post('/approver', requestController.updateRequestStatus);
+requestRoutes.post('/create', createRequest);
 
-module.exports = router;
+module.exports = { requestRoutes };
