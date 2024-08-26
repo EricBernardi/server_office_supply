@@ -1,13 +1,11 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const requestRoutes = require('./src/routes/requestRoutes');
-const cors = require('cors');
-const app = express();
+const { app } = require('./src/config/server');
+const request = require('./src/routes/requestRoutes');
+const approver = require('./src/routes/approverRoutes');
+const admin = require('./src/routes/adminRoutes');
 
-app.use(cors());
-app.use(bodyParser.json());
-
-app.use('/', requestRoutes);
+app.use('/requester', request.requestRoutes);
+app.use('/approver', approver.approverRoutes);
+app.use('/admin', admin.adminRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
